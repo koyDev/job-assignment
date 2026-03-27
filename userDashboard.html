@@ -1,0 +1,9 @@
+<div ng-controller="UserDashboardController">
+    <input ng-model="searchQuery" ng-change="onSearch()" placeholder="Search users...">
+    <div ng-repeat="user in filteredUsers">
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.email }}</p>
+        <button ng-click="makeAdmin(user)">Make Admin</button>
+    </div>
+    <div ng-if="filteredUsers.length == 0">No users found</div>
+</div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="eventFeedApp">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Live Event Feed</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="FeedCtrl">
+	<form ng-submit="submitEvent()">
+		<input ng-model="newEvent.type" placeholder="Type" required>
+		<input ng-model="newEvent.message" placeholder="Message" required>
+		<select ng-model="newEvent.priority">
+			<option value="low">Low</option>
+			<option value="normal">Normal</option>
+			<option value="high">High</option>
+		</select>
+		<button type="submit">Add Event</button>
+		<span ng-if="error" class="error">{{error}}</span>
+	</form>
+	<div>
+		High: {{ countByPriority('high') }},
+		Normal: {{ countByPriority('normal') }},
+		Low: {{ countByPriority('low') }}
+	</div>
+	<ul>
+		<li
+			ng-repeat="e in events"
+			ng-class="{'high': e.priority==='high','normal': e.priority==='normal','low': e.priority==='low'}">
+			[{{e.priority | uppercase}}] {{e.type}}: {{e.message}} <small>{{e.timestamp | date:'short'}}</small>
+		</li>
+	</ul>
+	<script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+li.high { color: red; font-weight: bold; }
+li.normal { color: black; }
+li.low { color: gray; }
+.error { color: red; }
+form, ul { margin: 16px 0; }
